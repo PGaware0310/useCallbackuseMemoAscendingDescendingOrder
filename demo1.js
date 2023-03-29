@@ -35,7 +35,7 @@ function addItem(e){
   //Create Edit Button
   var editBtn=document.createElement('button');
   //Add classname
-  editBtn.className='btn btn-primary ';
+  editBtn.className='btn btn-sm float-right edit ';
   //Add text to Button
   var edittext=document.createTextNode('EDIT');
   //Add text on button
