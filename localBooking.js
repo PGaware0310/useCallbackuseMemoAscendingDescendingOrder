@@ -1,7 +1,5 @@
 var items=document.getElementById('listOfItems');
 
-
-
 function saveTo(event) {
     event.preventDefault()
     //Gets the element--> use event.target
@@ -23,23 +21,41 @@ function showUserDetails(obj) {
     //create child element li
     const ChildEle = document.createElement('li');
     //create button as child element
-    const btn=document.createElement('button');
+    const delbtn=document.createElement('button');
+    const editbtn=document.createElement('button');
     //add class name to button
-    btn.className='btn'
+    delbtn.className='btn';
+    editbtn.className='btn';
     //add text on button
-    var btntext=document.createTextNode('Delete');
+    var delbtntext=document.createTextNode('Delete');
+    var editbtntext=document.createTextNode('Edit');
     //add text to button using appendchild
-    btn.appendChild(btntext);
+    delbtn.appendChild(delbtntext);
+    editbtn.appendChild(editbtntext);
     //fetch text content of an element
     ChildEle.textContent = obj.name + '-' + obj.email + '-' + obj.phn;
+
     //append text content with button
-    ChildEle.appendChild(btn);
+    ChildEle.appendChild(delbtn);
+    ChildEle.appendChild(editbtn);
     //append li
     ParentEle.appendChild(ChildEle);
+    ParentEle.appendChild(ChildEle);
 
-    btn.onclick=()=>{
+    //for deleting an item
+    delbtn.onclick=()=>{
         localStorage.removeItem(obj.email);
         ParentEle.removeChild(ChildEle);
     }
+
+    //for editing an item
+    editbtn.onclick=()=>{
+       localStorage.removeItem(obj.email);
+       ParentEle.removeChild(ChildEle);
+       document.getElementById('uname').value=obj.name;
+       document.getElementById('mail').value=obj.email;
+       document.getElementById('phn').value=obj.phn;
+        }
+    }
     
-}
+
