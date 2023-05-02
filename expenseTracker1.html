@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+    
+        }
+    
+        .form-control {
+            background-color: rgb(125, 199, 199);
+            height: 500px;
+            justify-content: center;
+            align-items: center;
+            /* width: 500px; */
+            max-width: 500px;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 50px;
+            margin-top: 40px;
+        }
+    
+        .container {
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+    
+        .btn {
+            border-radius: 5px;
+            padding: 3px;
+            margin: 2px;
+            background-color: rgb(55, 119, 230);
+            font-weight: bold;
+    
+        }
+    
+        .btn:hover {
+            background-color: rgb(18, 69, 136);
+        }
+        
+    </style>
+  </head>
+  <body>
+    <form class="form-control" id="form1" role="form" onsubmit="saveToLocal(event)">
+        <div class="container justify-content-center mt-4 align-items-center">
+            <div class="input-group display-flex justify-content-center">
+    
+                <div class="row text-center mb-3 p-2 col-sm-10">
+                    <h1>Expense Tracker</h1>
+            </div>
+            <div class="row mb-3 p-2 col-sm-10 ">
+      <label><b>Choose Amount</b></label>
+      <input type="number" id="eamount" name="amount"  />
+            </div><br>
+      
+      <div class="row mb-3 p-2 col-sm-10 ">
+        <label><b>Choose Description</b></label>
+        <input type="text" id="desc" name="description"  />
+    </div><br>
+
+    <div class="row mb-4 p-2 col-sm-10 ">
+                <label><b>Choose Category</b></label>
+                <select name="category" id="catgry">
+                    <option value="fuel">Fuel</option>
+                    <option value="electricity">Electricity</option>
+                    <option value="food">Food</option>
+                    <option value="movie">Movie</option>
+                  </select>
+            </div><br><br>
+      
+            <div class="row mb-3 p-2 col-sm-10 ">
+            <button id="btn1" class="btn">Submit</button> 
+        </div>
+    </div>
+</div>
+    </form>
+
+    <ul id="list"></ul>
+    <script>
+      // it will load all data when ur code will load on refresh but data must be present in localstorage
+      window.addEventListener("DOMContentLoaded", () => {
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+
+          const savedData = JSON.parse(localStorage.getItem(key))//json parse is a method which conver data to object because we moved the data using json stringyfy so we need to get data as it is before stringyfy
+          showDetails(savedData);
+        }
+      });
+
+      var items = document.getElementById("list");
+
+      function saveToLocal(event) {
+        event.preventDefault();
+        const amount = event.target.amount.value;
+        const descptn = event.target.description.value;
+        const category = event.target.category.value;
+
+        const obj = {
+          amount,
+          descptn,
+          category,
+        };
+        localStorage.setItem(obj.descptn, JSON.stringify(obj));
+        showDetails(obj);
+      }
+      function showDetails(obj) {
+        const parentE = document.getElementById("list");
+        const childE = document.createElement("li");
+        const delbtn = document.createElement("button");
+        const editbtn = document.createElement("button");
+        delbtn.className = "btn";
+        editbtn.className = "btn";
+        const detText = document.createTextNode("Delete Expense");
+        const editText = document.createTextNode("Edit Expense");
+        delbtn.appendChild(detText);
+        editbtn.appendChild(editText);
+        childE.textContent = obj.amount + " " + obj.descptn + " " + obj.category;
+        childE.appendChild(delbtn);
+        childE.appendChild(editbtn);
+        parentE.appendChild(childE);
+
+        delbtn.onclick = () => {
+          localStorage.removeItem(obj.descptn);
+          parentE.removeChild(childE);
+        };
+
+        editbtn.onclick = () => {
+          localStorage.removeItem(obj.descptn);
+          parentE.removeChild(childE);
+          document.getElementById("eamount").value = obj.amount;
+          document.getElementById("desc").value = obj.descptn;
+          document.getElementById("catgry").value = obj.category;
+        };
+      }
+    </script>
+  </body>
+</html>

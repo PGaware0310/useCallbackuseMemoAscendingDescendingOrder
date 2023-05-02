@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example</title>
+</head>
+<body>
+    <form onsubmit="save(event)">
+     <label>Name</label>
+     <input type="text" name="name" id="nm">
+     <label>Description</label>
+     <input type="text" name="descpn" id="desc">
+     <label>Amount</label>
+     <input type="number" name="amount" id="amt">
+     <button id="btn">Submit</button>
+     <ul id="list"></ul>
+    </form>
+
+    <script>
+    var items=document.getElementById('list');
+
+    function save(event){
+        event.preventDefault();
+        const name=event.target.name.value;
+        const descrpn=event.target.descpn.value;
+        const amount=event.target.amount.value;
+
+        const obj={
+            name,
+            descrpn,
+            amount
+        }
+        localStorage.setItem(obj,JSON.stringify(obj));
+        show(obj);
+    }
+    function show(obj)
+    {
+        const Parent=document.getElementById('list');
+        const Child=document.createElement('li');
+        const delbtn=document.createElement('button');
+        const editbtn=document.createElement('button');
+        delbtn.id='btn';
+        editbtn.id='btn';
+        const delText=document.createTextNode('Delete');
+        const editText=document.createTextNode('Edit');
+        
+    }
+    </script>
+</body>
+</html>
