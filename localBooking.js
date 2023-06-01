@@ -13,8 +13,15 @@ function saveTo(event) {
         phn
     }
     //JSON converts JS obj to string(Exchange data to/from server)
-    localStorage.setItem(obj.email, JSON.stringify(obj));
-    showUserDetails(obj);
+    // localStorage.setItem(obj.email, JSON.stringify(obj));
+    // showUserDetails(obj);
+
+    axios.post("https://crudcrud.com/api/a7e69266b491409cb7c468f3736a15c2/bookingApp",obj)
+    .then((response)=>{
+        showUserDetails(response)
+        console.log(response)
+    })
+    .catch((err)=>console.log(err))
 }
 function showUserDetails(obj) {
     const ParentEle = document.getElementById('listOfItems');
