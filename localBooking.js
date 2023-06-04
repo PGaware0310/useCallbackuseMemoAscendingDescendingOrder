@@ -12,31 +12,31 @@ function saveTo(event) {
         email,
         phn
     }
-}
+
 //JSON converts JS obj to string(Exchange data to/from server)
 // localStorage.setItem(obj.email, JSON.stringify(obj));
 // showUserDetails(obj);
 
-// axios.post("https://crudcrud.com/api/a7e69266b491409cb7c468f3736a15c2/bookingApp",obj)
-// .then((response)=>{
-//     showUserDetails(response)
-//     console.log(response)
-// })
-// .catch((err)=>console.log(err))
+axios.post("https://crudcrud.com/api/58e99c6e52c74033818ad6c2b29a8f7c/bookingApp",obj)
+.then((response)=>{
+    showUserDetails(response.data)
+    console.log(response)
+})
+.catch((err)=>console.log(err))
 
 window.addEventListener("DOMContentLoaded", () => {
-    axios.get("https://crudcrud.com/api/a7e69266b491409cb7c468f3736a15c2/bookingApp")
+    axios.get("https://crudcrud.com/api/58e99c6e52c74033818ad6c2b29a8f7c/bookingApp")
         .then((response) => {
-            console.log(response)
+            // console.log(response)
             for (var i = 0; i < response.data.length; i++) {
                 showUserDetails(response.data[i])
             }
         })
         .catch((err) => console.log(err))
-
-})
-
+    })
+}
 function showUserDetails(obj) {
+
     const ParentEle = document.getElementById('listOfItems');
     //create child element li
     const ChildEle = document.createElement('li');
@@ -63,10 +63,20 @@ function showUserDetails(obj) {
     ParentEle.appendChild(ChildEle);
 
     //for deleting an item
-    delbtn.onclick = () => {
-        localStorage.removeItem(obj.email);
-        ParentEle.removeChild(ChildEle);
-    }
+    // delbtn.onclick = () => {
+        
+    //     axios.delete(`https://crudcrud.com/api/58e99c6e52c74033818ad6c2b29a8f7c/bookingApp/${obj._id}`)
+    //     .then((response)=>{
+    //         console.log(obj._id)
+    //         showUserDetails(response)
+    //         console.log(response)
+    //     })
+    //     .catch((err)=>console.log(err))
+    // }
+        
+    //     localStorage.removeItem(obj.email);
+    //     ParentEle.removeChild(ChildEle);
+    // }
 
     //for editing an item
     editbtn.onclick = () => {
