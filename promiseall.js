@@ -3,7 +3,6 @@ const posts=[
     {title:'Post Two',body:'This is post two'},
     {title:'Post Three',body:'This is post three'},
     {title:'Post Four',body:'This is post four'}
-
 ];
  
 // function getPosts(){
