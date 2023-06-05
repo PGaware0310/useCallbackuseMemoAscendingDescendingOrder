@@ -36,17 +36,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
 })
     
-function showUserDetails(obj) {
+function showUserDetails(user) {
     let ParentEle = document.getElementById('listOfItems');
     //create child element li
     let ChildEle = document.createElement('li');
     
     //fetch text content of an element
-    ChildEle.textContent = obj.name + '-' + obj.email + '-' + obj.phn;
+    ChildEle.textContent = user.name + '-' + user.email + '-' + user.phn;
 
     
-    let userId = obj._id;
-    // ChildEle.id = userId;
+    let userId = user._id;
+    ChildEle.id = userId;
     
     //create button as child element
     let delbtn = document.createElement('button');
