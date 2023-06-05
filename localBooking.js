@@ -68,8 +68,8 @@ function showUserDetails(user) {
     delbtn.onclick = () => {
         axios.delete(`https://crudcrud.com/api/0a5e5fbcaa49470e9a9394cc1aa41e59/Bookingapp/${userId}`)
             .then((res) => {
-                showUserDetails(userId)
-                // console.log(res)
+                // showUserDetails(userId)
+                console.log(res)
             })
             .catch((err) => console.log(err))
         ChildEle = document.getElementById(userId);
@@ -80,7 +80,7 @@ function showUserDetails(user) {
         // ParentEle.removeChild(ChildEle);
     }
 
-
+    
     let editbtn = document.createElement('button');
     editbtn.className = 'btn';
     var editbtntext = document.createTextNode('Edit');
@@ -89,11 +89,22 @@ function showUserDetails(user) {
     ParentEle.appendChild(ChildEle);
     // for editing an item
     editbtn.onclick = () => {
-        localStorage.removeItem(obj.email);
+
+        axios.delete(`https://crudcrud.com/api/0a5e5fbcaa49470e9a9394cc1aa41e59/Bookingapp/${userId}`)
+        .then((response)=>{
+            // showUserDetails(userId)
+            console.log(response)
+        })
+        .catch((err)=>console.log(err))
+
+        ChildEle = document.getElementById(userId);
         ParentEle.removeChild(ChildEle);
-        document.getElementById('uname').value = obj.name;
-        document.getElementById('mail').value = obj.email;
-        document.getElementById('phn').value = obj.phn;
+        // localStorage.removeItem(obj.email);
+        // ParentEle.removeChild(ChildEle);
+        
+        document.getElementById('uname').value = user.name;
+        document.getElementById('mail').value = user.email;
+        document.getElementById('phn').value = user.phn;
     }
 
 }
