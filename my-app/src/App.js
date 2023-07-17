@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import ExpenceItem from './components/ExpenceItem';
+import ExpenceItem from './components/ExpenseItem';
 function App() {
   return (
     <div className="App">
