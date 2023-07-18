@@ -1,9 +1,8 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import ExpenseItem from './components/ExpenseItem';
-
-  
-    const expenses = [
+function App() {
+  const expenses = [
       {
         id: 'e1',
         title: 'Toilet Paper',
@@ -27,19 +26,18 @@ import ExpenseItem from './components/ExpenseItem';
         location:'London'
       },
     ];
-    function App() {
+    
     return (
       <div>
-        {expenses.map(expns => {
+      <h2>Let's get started</h2>
+        {
+          expenses.map((expns) => {
           return (
-            <div>
-             <div><h2>title:{expns.title} &nbsp;
-              amount:${expns.amount} &nbsp;
-              date:{expns.date.toISOString()} &nbsp;
-             Location:{expns.location}</h2></div>
-             <hr/>
-            </div>
-          );
+          <ExpenseItem title={expns.title} 
+              amount={expns.amount} 
+              date={expns.date} 
+             Location={expns.location}
+             ></ExpenseItem>)
         })}
       </div>
      );
