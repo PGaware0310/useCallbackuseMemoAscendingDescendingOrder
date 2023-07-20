@@ -1,6 +1,8 @@
 // import logo from './logo.svg';
 import './App.css';
+import ExpenseDetails from './components/ExpenseDetails';
 import ExpenseItem from './components/ExpenseItem';
+import ExpenseDate from './components/ExpenseDate';
 function App() {
   const expenses = [
       {
@@ -33,11 +35,14 @@ function App() {
         {
           expenses.map((expns) => {
           return (
-          <ExpenseItem title={expns.title} 
-              amount={expns.amount} 
-              date={expns.date} 
-             Location={expns.location}
-             ></ExpenseItem>)
+            <>
+          <ExpenseDate date={expns.date} />
+           <ExpenseDetails  title={expns.title}
+           amount={expns.amount}  
+             location={expns.location}
+             />
+             </>
+             )
         })}
       </div>
      );
