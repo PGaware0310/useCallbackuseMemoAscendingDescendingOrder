@@ -36,7 +36,7 @@ const App=() =>{
       <h2>Let's get started!</h2>
       
         <Expenses items={expenses}/>
-        
+       
       </div>
      );
 }
