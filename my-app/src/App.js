@@ -1,8 +1,9 @@
 // import logo from './logo.svg';
-import ExpenseForm from './components/ExpenseForm/ExpenseForm';
+// import ExpenseForm from './components/ExpenseForm/ExpenseForm';
 import React from 'react';
 // import './App.css';
 import Expenses from './components/Expenses/Expenses';
+import NewExpense from './components/ExpenseForm/NewExpense';
 
 
 const App=() =>{
@@ -35,7 +36,8 @@ const App=() =>{
     return (
       <div>
       <h2>Let's get started!</h2>
-      <ExpenseForm/>
+      {/* <ExpenseForm onSaveExpenseData/> */}
+      <NewExpense/>
         <Expenses items={expenses}/>
        
       </div>
